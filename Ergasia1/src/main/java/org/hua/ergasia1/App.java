@@ -4,7 +4,7 @@ package org.hua.ergasia1;
  *
  * @author Αντωνόπουλος Διογένης
  * @author Στεφανίδου   Άρτεμις
- * @author  Χυσκάι      Βασίλης
+ * @author  Χύσκαϊ      Βασίλης
  */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
