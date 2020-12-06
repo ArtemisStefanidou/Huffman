@@ -2,15 +2,19 @@ package org.hua.ergasia1;
 
 /**
  *
- * @author Αντωνόπουλος Διογένης
- * @author Στεφανίδου   Άρτεμις
- * @author  Χυσκάι      Βασίλης
+ * @author Î‘Î½Ï„Ï‰Î½ÏŒÏ€Î¿Ï…Î»Î¿Ï‚ Î”Î¹Î¿Î³Î­Î½Î·Ï‚
+ * @author Î£Ï„ÎµÏ†Î±Î½Î¯Î´Î¿Ï…   Î†ÏÏ„ÎµÎ¼Î¹Ï‚
+ * @author  Î§Ï…ÏƒÎºÎ¬Î¹      Î’Î±ÏƒÎ¯Î»Î·Ï‚
  */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.Scanner;
 
 public class App {
 
@@ -23,13 +27,13 @@ public class App {
         urlName[0] = "https://www.gutenberg.org/files/1342/1342-0.txt";
         urlName[1] = "https://www.gutenberg.org/files/11/11-0.txt";
         urlName[2] = "https://www.gutenberg.org/files/2701/2701-0.txt";
+        int[] chars = new int[128];
         
         try {
             URL[] url = new URL[3];
             BufferedReader[] reader = new BufferedReader[3];
 
             //each position of the array corresponds to the counter of an ASCII character
-            int[] chars = new int[128];
             int charValue = 0;
             
             //For the three url
@@ -66,8 +70,17 @@ public class App {
             System.out.println("Something went wrong");
         }
         
+        Scanner scanner = new Scanner(new File("frequencies.dat"));
+        int[] array = new int[128];
+        for(int i= 0; i < 128; i++) {
+            array[i] = scanner.nextInt();
+        }
+        
+        Huffman tree = new Huffman();
+        FileOutputStream fileOut = new FileOutputStream("tree.dat");
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(tree.makeTree(array));
+        objectOut.close();
     }
 
 }
-
-
