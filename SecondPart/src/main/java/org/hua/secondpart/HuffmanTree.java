@@ -7,8 +7,11 @@ package org.hua.secondpart;
 
 /**
  *
- * @author KillB
+ * @author Αντωνόπουλος Διογένης
+ * @author Στεφανίδου   Άρτεμις
+ * @author  Χύσκαϊ      Βασίλης
  */
+
 import java.io.Serializable;
 
 /**

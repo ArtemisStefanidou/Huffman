@@ -13,14 +13,9 @@ package org.hua.secondpart;
  */
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
-import java.net.URL;
 import java.util.Scanner;
 
 public class App {
@@ -31,12 +26,10 @@ public class App {
         int[] array = new int[128];
         for(int i= 0; i < 128; i++) {
             array[i] = scanner.nextInt();
-            System.out.println(array[i]);
         }
         
         HuffmanTree tree = new HuffmanTree();
-        FileOutputStream fileOut = new FileOutputStream("tree.dat");
-        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"));
         objectOut.writeObject(tree.makeTree(array));
         objectOut.close();
     }
