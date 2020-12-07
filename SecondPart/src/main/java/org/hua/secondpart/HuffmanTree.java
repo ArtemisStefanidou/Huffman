@@ -20,29 +20,6 @@ import java.io.Serializable;
  */
 public class HuffmanTree implements Serializable {
     
-    private static class Node implements Comparable<Node>,Serializable {
-        
-        private char character;
-        private int frequency;
-        private Node left, right;
-        
-        public Node(char character,int frequency, Node left,Node right) {
-            this.character = character;
-            this.frequency = frequency;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public int compareTo(Node n) {
-            return this.frequency - n.frequency;
-        }
-        
-        public boolean isLeaf() {
-            return right == null && left == null;
-        }
-    }
-    
     public Node makeTree(int[] array) {
         Node[] treeNodes = new Node[128];
         for(char i = 0; i<array.length; i++) {
@@ -52,7 +29,7 @@ public class HuffmanTree implements Serializable {
         while(h.size() > 1) {
             Node leftChild = h.deleteMin();
             Node rightChild = h.deleteMin();
-            Node parent = new Node('\0',leftChild.frequency + rightChild.frequency,leftChild,rightChild);
+            Node parent = new Node('\0',leftChild.getFrequency() + rightChild.getFrequency(),leftChild,rightChild);
             h.insert(parent);
         }
         return h.deleteMin();
