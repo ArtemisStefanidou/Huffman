@@ -54,7 +54,7 @@ public class App {
             BufferedWriter outputStream = new BufferedWriter(new FileWriter("frequencies.dat"));
 
             for (int i = 0; i < 128; i++) {
-                outputStream.write(chars[i] + "\n");
+                outputStream.write(i + " -> " + chars[i] + "\n");
                 outputStream.flush();
             }
 
