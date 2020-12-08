@@ -42,4 +42,12 @@ public class Node implements Comparable<Node>, Serializable {
         return frequency;
     }
 
+    public Node getLeftChild() {
+        return left;
+    }
+
+    public Node getRightChild() {
+        return right;
+    }
+
 }
