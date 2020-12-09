@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.hua.secondpart;
+package org.hua.Huffman;
 
 /**
  *
@@ -13,8 +13,13 @@ package org.hua.secondpart;
  */
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
@@ -31,7 +36,8 @@ public class App {
         HuffmanTree tree = new HuffmanTree();
         ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"));
         objectOut.writeObject(tree.makeTree(array));
-        objectOut.close();
+        objectOut.close();        
+        
     }
 
 }
