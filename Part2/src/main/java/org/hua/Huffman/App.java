@@ -27,15 +27,23 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
+        //Read the frequencies 
         Scanner scanner = new Scanner(new File("frequencies.dat"));
         int[] array = new int[128];
         for(int i= 0; i < 128; i++) {
             array[i] = scanner.nextInt();
         }
         
+        //Call class HuffmanTree to create an object for that
         HuffmanTree tree = new HuffmanTree();
+        
+        //Create the file tree.dat
         ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"));
+        
+        //Cretae the huffman tree by calling makeTree and write it in tree.dat 
         objectOut.writeObject(tree.makeTree(array));
+        
+        //Close the OutputStream odject
         objectOut.close();        
         
     }
