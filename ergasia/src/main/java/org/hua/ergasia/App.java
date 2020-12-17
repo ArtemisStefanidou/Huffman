@@ -11,13 +11,10 @@ package org.hua.ergasia;
  * @author Στεφανίδου Άρτεμις
  * @author Χύσκαϊ Βασίλης
  */
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
 public class App {    
 
@@ -26,7 +23,7 @@ public class App {
         //Array for the url
         URL[] url = new URL[3];
 
-        //URL given fron user
+        //URL given from user
         url[0] = new URL("https://www.gutenberg.org/files/1342/1342-0.txt");
         url[1] = new URL("https://www.gutenberg.org/files/11/11-0.txt");
         url[2] = new URL("https://www.gutenberg.org/files/2701/2701-0.txt");
@@ -53,10 +50,29 @@ public class App {
         //Create a file and print the results there
         try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("frequencies.dat"))) {
             for (int i = 0; i < 128; i++) {
-                outputStream.write(i + " -> " + chars[i] + "\n");
+                outputStream.write( chars[i] + "\n");
                 outputStream.flush();
             }
         }
+
+        //Read the frequencies
+        Scanner scanner = new Scanner(new File("frequencies.dat"));
+        int[] array = new int[128];
+        for(int i= 0; i < 128; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        //Call class HuffmanTree to create an object for that
+        Huffman tree = new Huffman();
+
+        //Create the file tree.dat and open output stream
+        ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"));
+
+        //Create the huffman tree by calling makeTree and write it in tree.dat
+        objectOut.writeObject(tree.makeTree(array));
+
+        //Close the OutputStream object
+        objectOut.close();
     }
 
 }
