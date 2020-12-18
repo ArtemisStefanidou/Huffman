@@ -1,3 +1,8 @@
+/*
+ * A class that represents its node for a tree
+ *
+ *
+ */
 package org.hua.ergasia;
 
 import java.io.Serializable;
@@ -33,6 +38,7 @@ public class Node implements Comparable<Node>, Serializable {
     public boolean isLeaf() {
         return right == null && left == null;
     }
+
 
     public char getCharacter() {
         return character;

@@ -65,14 +65,11 @@ public class App {
         //Call class HuffmanTree to create an object for that
         Huffman tree = new Huffman();
 
-        //Create the file tree.dat and open output stream
-        ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"));
-
         //Create the huffman tree by calling makeTree and write it in tree.dat
-        objectOut.writeObject(tree.makeTree(array));
+        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"))) {
+            objectOut.writeObject(tree.makeTree(array));
+        }
 
-        //Close the OutputStream object
-        objectOut.close();
     }
 
 }
