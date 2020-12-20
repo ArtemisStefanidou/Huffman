@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Στεφανίδου   Άρτεμις
  * @author  Χύσκαϊ      Βασίλης
  */
-public class Huffman implements Serializable {
+public class Huffman {
 
 
     /**
