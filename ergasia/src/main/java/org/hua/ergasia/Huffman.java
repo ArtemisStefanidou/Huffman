@@ -1,7 +1,5 @@
 package org.hua.ergasia;
 
-import java.io.Serializable;
-
 /**
  * A Huffman Tree Implementation
  *
