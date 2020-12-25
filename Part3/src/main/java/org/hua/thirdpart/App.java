@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.hua.ergasia;
+package org.hua.thirdpart;
 
 /**
  *
@@ -14,13 +14,14 @@ package org.hua.ergasia;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class App {    
 
-    public static void main(String[] args) throws MalformedURLException, IOException {
+    public static void main(String[] args) throws MalformedURLException, IOException, ClassNotFoundException {
 
-        //Array for the url
+  
         URL[] url = new URL[3];
 
         //URL given from user
@@ -62,14 +63,50 @@ public class App {
             array[i] = scanner.nextInt();
         }
 
-        //Call class HuffmanTree to create an object for that
+        //Call class HuffmanTree to create an object for that by the dafault costructor
         Huffman tree = new Huffman();
 
         //Create the huffman tree by calling makeTree and write it in tree.dat
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"))) {
             objectOut.writeObject(tree.makeTree(array));
         }
+        
+        ObjectInput input = new ObjectInputStream(new BufferedInputStream(new FileInputStream("tree.dat")));
+        
+        //ReadTree root = new ReadTree((Node) input.readObject());
+        
+       
+        
+        try{
+            
+            
+        
+        Node root =(Node) input.readObject();
+        ReadTree Tree =new ReadTree();
+       
+        
+        
+        PrintWriter output= new PrintWriter("codes.dat");
+        
+        Tree.printCode(root,output);
+        
+       
+        output.close();
+        
+        
+        
+        }catch(NoSuchElementException e){
+            System.out.print("");
+        }
+        
+       
+        
+        
+        //Tree.printHuffmanTree(root,"");
+        
+        
 
+        
     }
 
 }
