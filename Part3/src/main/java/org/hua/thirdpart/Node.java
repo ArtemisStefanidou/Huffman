@@ -3,7 +3,7 @@
  *
  *
  */
-package org.hua.ergasia;
+package org.hua.thirdpart;
 
 import java.io.Serializable;
 
