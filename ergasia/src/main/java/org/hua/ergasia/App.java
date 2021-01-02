@@ -18,9 +18,9 @@ import java.util.Scanner;
 
 public class App {    
 
-    public static void main(String[] args) throws MalformedURLException, IOException {
+    public static void main(String[] args) throws MalformedURLException, IOException, ClassNotFoundException {
 
-        //Array for the url
+  
         URL[] url = new URL[3];
 
         //URL given from user
@@ -62,13 +62,34 @@ public class App {
             array[i] = scanner.nextInt();
         }
 
-        //Call class HuffmanTree to create an object for that
+        //Call class HuffmanTree to create an object for that by the dafault costructor
         Huffman tree = new Huffman();
 
         //Create the huffman tree by calling makeTree and write it in tree.dat
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream("tree.dat"))) {
             objectOut.writeObject(tree.makeTree(array));
         }
+        
+        //create a stream to read file tree.dat
+        ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream("tree.dat")));
+        Node root = (Node) input.readObject();
+        
+        //Create a BufferWriter to write in file codes.dat
+        try ( BufferedWriter output = new BufferedWriter(new FileWriter("codes.dat"))) {
+            
+            //save the array that return from class Huffman method printCode
+            String[] arrayCode = tree.printCode(root);
+
+            //print the result of representation of characters in the file codes.dat
+            for (int i = 0; i < 128; i++) {
+
+                output.write(i + "->" + arrayCode[i] + "\n");
+                output.flush();
+            }
+            output.close();
+            System.out.println("A file created.Check codes.dat");
+        }
+        
 
     }
 
