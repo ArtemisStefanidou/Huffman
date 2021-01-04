@@ -78,7 +78,7 @@ public class App {
         try ( BufferedWriter output = new BufferedWriter(new FileWriter("codes.dat"))) {
             
             //save the array that return from class Huffman method printCode
-            String[] arrayCode = tree.printCode(root);
+            String[] arrayCode = tree.createCode(root);
 
             //print the result of representation of characters in the file codes.dat
             for (int i = 0; i < 128; i++) {

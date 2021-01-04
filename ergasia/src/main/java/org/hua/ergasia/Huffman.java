@@ -59,7 +59,7 @@ public class Huffman {
      * @return array of representation of characters in a sequence of aces and
      * zeros
      */
-    public String[] printCode(Node curRoot) {
+    public String[] createCode(Node curRoot) {
 
         //check if the node is leaf->has one of 128 ASCII characters
         if (!curRoot.isLeaf()) {
