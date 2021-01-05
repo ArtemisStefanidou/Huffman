@@ -65,10 +65,10 @@ public class Huffman {
         if (!curRoot.isLeaf()) {
 
             dequeCode.push(LEFT);
-            printCode(curRoot.getLeftChild());
+            createCode(curRoot.getLeftChild());
 
             dequeCode.push(RIGHT);
-            printCode(curRoot.getRightChild());
+            createCode(curRoot.getRightChild());
 
         } else {
 

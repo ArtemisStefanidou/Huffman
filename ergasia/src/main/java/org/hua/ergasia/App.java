@@ -87,7 +87,7 @@ public class App {
                 output.flush();
             }
             output.close();
-            System.out.println("A file created.Check codes.dat");
+            System.out.println("codes.dat created successfully ");
         }
         
 
