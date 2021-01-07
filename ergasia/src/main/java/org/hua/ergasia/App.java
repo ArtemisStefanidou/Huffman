@@ -80,16 +80,17 @@ public class App {
             //save the array that return from class Huffman method printCode
             String[] arrayCode = tree.createCode(root);
 
-            //print the result of representation of characters in the file codes.dat
+              //print the result of representation of characters in the file codes.dat
             for (int i = 0; i < 128; i++) {
 
                 output.write(arrayCode[i] + "\n");
                 output.flush();
             }
             output.close();
-            System.out.println("codes.dat created successfully ");
+            System.out.println("A file created.Check codes.dat");
         }
-         //Check for correct input from the terminal
+
+        //Check for correct input from the terminal
         if (args.length < 2) {
             System.out.println("Usage: program filename filename");
             System.exit(-1);
@@ -113,6 +114,7 @@ public class App {
             while ((ch = myReader.read()) != -1) {
                 encode.append(code[ch]);
             }
+            System.out.println(encode.toString());
         }
 
         //Find the useful bits of the last byte
@@ -120,10 +122,11 @@ public class App {
         tmp = encode.length() % 8;
         
         //Create and output the new bytes in the file
+        String newLine=System.getProperty("line.separator");
         try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(args[1]))) {
             //Print the usesful bits and a newline
             dataOut.writeBytes(tmp.toString());
-            dataOut.writeChar(10);
+            dataOut.writeChars(newLine);
             
             byte currentByte = 0;
             int i = 0, j = 0;
@@ -136,14 +139,13 @@ public class App {
                 j++;
                 //Print to the file if you have 8 bits or at your last bits
                 if (i % 8 == 0 || i == encode.length() - 1) {
-                    
+                    System.out.println(currentByte);
                     dataOut.writeByte(currentByte);
                     j = 0;
                     currentByte = 0;
                 }
             }
         }
-
     }
 
 }
