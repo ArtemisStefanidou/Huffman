@@ -1,3 +1,4 @@
+package org.hua.ergasia;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
