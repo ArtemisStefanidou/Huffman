@@ -114,6 +114,10 @@ public class App {
             try (BufferedReader myReader = new BufferedReader(new FileReader(file))) {
                 int ch;
                 while ((ch = myReader.read()) != -1) {
+                    if(ch>127){
+                        System.out.println("Please give a file in ASCII");
+                        System.exit(-1);
+                    }
                     encode.append(code[ch]);
                 }
                
@@ -142,7 +146,7 @@ public class App {
                     i++;
                     j++;
                     //Print to the file if you have 8 bits or at your last bits
-                    if (i % 8 == 0 || i == encode.length() - 1) {
+                    if (i % 8 == 0 || i == encode.length()) {
                         
                         dataOut.writeByte(currentByte);
                         j = 0;
@@ -157,3 +161,4 @@ public class App {
     }
 
 }
+
