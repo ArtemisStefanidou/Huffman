@@ -40,7 +40,7 @@ public class App {
             reader[i] = new BufferedReader(new InputStreamReader(url[i].openStream()));
 
             while ((charValue = reader[i].read()) != -1) {
-                if (charValue < 255) {
+                if (charValue < 256) {
                     chars[charValue]++;
                 }
             }
@@ -49,7 +49,7 @@ public class App {
         }
         //Create a file and print the results there
         try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("frequencies.dat"))) {
-            for (int i = 0; i < 255; i++) {
+            for (int i = 0; i < 256; i++) {
                 outputStream.write( chars[i] + "\n");
                 outputStream.flush();
             }
@@ -58,7 +58,7 @@ public class App {
         //Read the frequencies
         Scanner scanner = new Scanner(new File("frequencies.dat"));
         int[] array = new int[256];
-        for(int i= 0; i < 255; i++) {
+        for(int i= 0; i < 256; i++) {
             array[i] = scanner.nextInt();
         }
 
@@ -81,7 +81,7 @@ public class App {
             String[] arrayCode = tree.createCode(root);
 
               //print the result of representation of characters in the file codes.dat
-            for (int i = 0; i < 255; i++) {
+            for (int i = 0; i < 256; i++) {
 
                 output.write(arrayCode[i] + "\n");
                 output.flush();
@@ -115,7 +115,7 @@ public class App {
                 int ch;
                 while ((ch = myReader.read()) != -1) {
                     
-                    if(ch < 255 && ch >= 0 ) {
+                    if(ch < 256 && ch >= 0 ) {
                         
                         encode.append(code[ch]);
           
