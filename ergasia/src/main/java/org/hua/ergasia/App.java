@@ -114,11 +114,15 @@ public class App {
             try (BufferedReader myReader = new BufferedReader(new FileReader(file))) {
                 int ch;
                 while ((ch = myReader.read()) != -1) {
-                    if(ch>127){
-                        System.out.println("Please give a file in ASCII");
-                        System.exit(-1);
+                    
+                    if(ch < 128 && ch >= 0 ) {
+                        
+                        encode.append(code[ch]);
+          
+                    } else {
+                        
+                        System.out.println( (int)ch + "-> is not ASCII");
                     }
-                    encode.append(code[ch]);
                 }
                
             }
