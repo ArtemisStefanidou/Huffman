@@ -99,30 +99,60 @@ public class Huffman {
     }
 
     public String decode (byte[] encoded, Node root){
+
         StringBuffer decoded = new StringBuffer();
         Node tmp = root;
 
-        for(int i = 0; i < encoded.length ; i++)
+        for(int i = 1; i < encoded.length - 1 ; i++)
         {
+            int mask = 0x80;
+
             for(int j = 0; j < 8; j++) {
 
-                if( (encoded[i] & 1 << (7 - j)) == RIGHT) {
+                if( ( encoded[i] & mask ) != 0 ) {
+
                     tmp = tmp.getRightChild();
 
-                    if(tmp.isLeaf()) {
-                        decoded.append(tmp.getCharacter());
-                        tmp = root;
-                    }
-
-                } else {
+                } else if( ( encoded[i] & mask ) == 0){
+                    
                     tmp = tmp.getLeftChild();
 
-                    if(tmp.isLeaf()) {
-                        decoded.append(tmp.getCharacter());
-                        tmp = root;
-                    }
                 }
 
+                mask >>= 1 ;
+
+                if(tmp.isLeaf()) {
+                    decoded.append(tmp.getCharacter());
+                    tmp = root;
+                }
+
+
+            }
+
+        }
+        int mask = 0x80;
+
+        for (int i = 0 ; i < encoded[0] ; i++){
+
+            if( ( encoded[encoded.length - 1] & mask ) != 0 ) {
+
+                System.out.println(" Go right -> " + mask );
+
+                tmp = tmp.getRightChild();
+
+            } else if( ( encoded[encoded.length - 1] & mask ) == 0){
+
+                System.out.println(" Go left -> " + mask );
+
+                tmp = tmp.getLeftChild();
+
+            }
+
+            mask >>= 1 ;
+
+            if(tmp.isLeaf()) {
+                decoded.append(tmp.getCharacter());
+                tmp = root;
             }
 
         }

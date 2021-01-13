@@ -47,6 +47,7 @@ public class App {
 
             reader[i].close();
         }
+
         //Create a file and print the results there
         try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("frequencies.dat"))) {
             for (int i = 0; i < 128; i++) {
@@ -101,22 +102,24 @@ public class App {
         
         //Store in encode,char by char,the corresponding huffman encoding
         try{
-        
+
             StringBuffer encode = new StringBuffer();
-            try (BufferedReader myReader = new BufferedReader(new InputStreamReader(url[0].openStream()))) {
+            File file = new File("test.txt");
+
+            try (BufferedReader myReader = new BufferedReader((new FileReader(file)))) {
                 int ch;
                 while ((ch = myReader.read()) != -1) {
-                    
+
                     if(ch < 128 && ch >= 0 ) {
-                        
+
                         encode.append(code[ch]);
-          
+
                     } else {
-                        
+
                         System.out.println( (int)ch + "-> is not ASCII");
                     }
                 }
-               
+
             }
        
 
@@ -128,7 +131,7 @@ public class App {
             try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("encodedFile.txt"))) {
                 //Print the useful bits
 
-                //dataOut.writeByte(tmp);
+                dataOut.writeByte(tmp);
 
                 byte currentByte = 0;
                 int i = 0, j = 0;
