@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class App {    
+public class Encode {
 
     public static void main(String[] args) throws MalformedURLException, IOException, ClassNotFoundException {
 
@@ -62,7 +62,7 @@ public class App {
             array[i] = scanner.nextInt();
         }
 
-        //Call class HuffmanTree to create an object for that by the dafault costructor
+        //Call class HuffmanTree to create an object for that by the default constructor
         Huffman tree = new Huffman();
 
         //Create the huffman tree by calling makeTree and write it in tree.dat
@@ -106,7 +106,7 @@ public class App {
             }
         }
         
-        //Store in encode,char by char,the coresponding huffman encoding
+        //Store in encode,char by char,the corresponding huffman encoding
         try{
             File file = new File(args[0]);
         
@@ -129,15 +129,17 @@ public class App {
        
 
             //Find the useful bits of the last byte
-            Integer tmp;
-            tmp = encode.length() % 8;
+
+
+            byte tmp = (byte) (encode.length() % 8);   // Εδώ έχουμε την πρώτη αλλαγή !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
             //Create and output the new bytes in the file
             String newLine=System.getProperty("line.separator");
             try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(args[1]))) {
-                //Print the usesful bits and a newline
-                dataOut.writeBytes(tmp.toString());
-                dataOut.writeChars(newLine);
+
+                //Print the useful bits
+                dataOut.writeByte(tmp);   // και εδώ η δεύτερη !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 byte currentByte = 0;
                 int i = 0, j = 0;

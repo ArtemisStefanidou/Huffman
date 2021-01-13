@@ -6,9 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/Part1/Part1.iml" filepath="$PROJECT_DIR$/Part1/Part1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Part2/Part2.iml" filepath="$PROJECT_DIR$/Part2/Part2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Part3/Part3.iml" filepath="$PROJECT_DIR$/Part3/Part3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Part4/Part4.iml" filepath="$PROJECT_DIR$/Part4/Part4.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Part5/Part5.iml" filepath="$PROJECT_DIR$/Part5/Part5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ergasia/ergasia.iml" filepath="$PROJECT_DIR$/ergasia/ergasia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Part4/ergasia256/ergasia.iml" filepath="$PROJECT_DIR$/Part4/ergasia256/ergasia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Part5/ergasia (1).iml" filepath="$PROJECT_DIR$/Part5/ergasia (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/ergasia/ergasia (2).iml" filepath="$PROJECT_DIR$/ergasia/ergasia (2).iml" />
     </modules>
   </component>
 </project>

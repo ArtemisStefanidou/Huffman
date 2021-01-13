@@ -31,6 +31,7 @@ mvn package
 Run main using 
 
 ```
-java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.App "input filename" "output filename"
+java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.Encode "input filename" "output filename"
+java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.Decode "input filename" "output filename"
 ```
 Προσοχή: Πρέπει το αρχείο input_filename να υπάρχει και να περιέχει χαρακτήρες ASCII.

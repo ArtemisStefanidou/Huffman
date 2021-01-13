@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class App {    
+public class Encode {
 
     public static void main(String[] args) throws MalformedURLException, IOException, ClassNotFoundException {
 
@@ -47,7 +47,6 @@ public class App {
 
             reader[i].close();
         }
-
         //Create a file and print the results there
         try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("frequencies.dat"))) {
             for (int i = 0; i < 128; i++) {
@@ -63,7 +62,7 @@ public class App {
             array[i] = scanner.nextInt();
         }
 
-        //Call class HuffmanTree to create an object for that by the dafault costructor
+        //Call class HuffmanTree to create an object for that by the default constructor
         Huffman tree = new Huffman();
 
         //Create the huffman tree by calling makeTree and write it in tree.dat
@@ -90,6 +89,13 @@ public class App {
             output.close();
             
         }
+
+        //Check for correct input from the terminal
+        if (args.length != 2) {
+            System.out.println("Usage: program filename filename\nAnd the first file must already exist");
+            System.exit(-1);
+	    }
+        
         
         //Read the Huffman coding from the file codes.dat
         String[] code = new String[128];
@@ -102,36 +108,38 @@ public class App {
         
         //Store in encode,char by char,the corresponding huffman encoding
         try{
-
+            File file = new File(args[0]);
+        
             StringBuffer encode = new StringBuffer();
-            File file = new File("test.txt");
-
-            try (BufferedReader myReader = new BufferedReader((new FileReader(file)))) {
+            try (BufferedReader myReader = new BufferedReader(new FileReader(file))) {
                 int ch;
                 while ((ch = myReader.read()) != -1) {
-
+                    
                     if(ch < 128 && ch >= 0 ) {
-
+                        
                         encode.append(code[ch]);
-
+          
                     } else {
-
+                        
                         System.out.println( (int)ch + "-> is not ASCII");
                     }
                 }
-
+               
             }
        
 
             //Find the useful bits of the last byte
-            byte tmp = (byte) (encode.length() % 8);
+
+
+            byte tmp = (byte) (encode.length() % 8);   // Εδώ έχουμε την πρώτη αλλαγή !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
             //Create and output the new bytes in the file
             String newLine=System.getProperty("line.separator");
-            try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("encodedFile.txt"))) {
-                //Print the useful bits
+            try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(args[1]))) {
 
-                dataOut.writeByte(tmp);
+                //Print the useful bits
+                dataOut.writeByte(tmp);   // και εδώ η δεύτερη !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 byte currentByte = 0;
                 int i = 0, j = 0;
@@ -156,35 +164,6 @@ public class App {
             System.out.println("Usage: program filename filename\nAnd the first file must already exist");
             System.exit(-1);
         }
-
-        // part 5
-        File f = new File("encodedFile.txt");
-
-        byte[] encodedFile = new byte[(int)f.length()];
-
-        FileInputStream inputStream = new FileInputStream(f);
-
-        inputStream.read(encodedFile);
-
-        inputStream.close();
-
-        //create a stream to read file tree.dat
-        ObjectInputStream inputTree = new ObjectInputStream(new BufferedInputStream(new FileInputStream("tree.dat")));
-        Node rootTree = (Node) inputTree.readObject();
-
-
-        //Create a BufferWriter to write in file codes.dat
-        try ( BufferedWriter outFile = new BufferedWriter(new FileWriter("decoded.txt"))) {
-
-
-            //print the result of representation of characters in the file codes.dat
-            outFile.write(tree.decode(encodedFile, rootTree));
-            outFile.flush();
-
-
-        }
-
-
     }
 
 }

@@ -98,31 +98,55 @@ public class Huffman {
 
     }
 
-    public String decode (byte[] encoded, Node root){
 
-        StringBuffer decoded = new StringBuffer();
+    /**
+     * // Δεν ξέρω τι να γράψωωωω!!!!!!!!!!!!!!!!!!!!!!!!!!Βοήθεια!!!!!!!!!!!!#@#$@#$%^&*())(*#$%^&*!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     *
+     * @param byteArray the array of encoded bytes
+     * @param root the root of the Huffman tree
+     * @return String of the decoded text
+     */
+    public String decode (byte[] byteArray, Node root){
+
+        StringBuffer decodedCharacters = new StringBuffer();
         Node tmp = root;
 
-        for(int i = 1; i < encoded.length - 1 ; i++)
+        // all bytes have 8 useful bits except the last one
+        int usefulBits = 8;
+
+        // for loop to access byte array except first and last byte
+        for(int i = 1; i < byteArray.length ; i++)
         {
+            // a mask 0x80 is 1000 0000 in binary
             int mask = 0x80;
 
-            for(int j = 0; j < 8; j++) {
+            //if we are on the last byte
+            if(i == byteArray.length - 1 ) {
 
-                if( ( encoded[i] & mask ) != 0 ) {
+                //the first byte of array represents the useful bits of the last byte
+                usefulBits = byteArray[0];
+            }
+
+            // we need a loop to access all useful bits of a byte
+            for(int j = 0; j < usefulBits; j++) {
+
+                // if the selected bit is zero or ace go left or right on the tree
+                if( ( byteArray[i] & mask ) == 0 ) {
+
+                    tmp = tmp.getLeftChild();
+
+                } else {
 
                     tmp = tmp.getRightChild();
 
-                } else if( ( encoded[i] & mask ) == 0){
-                    
-                    tmp = tmp.getLeftChild();
-
                 }
 
+                // mask shift lef by one for the next bit
                 mask >>= 1 ;
 
+                // if is leaf then add character to StringBuffer
                 if(tmp.isLeaf()) {
-                    decoded.append(tmp.getCharacter());
+                    decodedCharacters.append(tmp.getCharacter());
                     tmp = root;
                 }
 
@@ -130,35 +154,10 @@ public class Huffman {
             }
 
         }
-        int mask = 0x80;
-
-        for (int i = 0 ; i < encoded[0] ; i++){
-
-            if( ( encoded[encoded.length - 1] & mask ) != 0 ) {
-
-                System.out.println(" Go right -> " + mask );
-
-                tmp = tmp.getRightChild();
-
-            } else if( ( encoded[encoded.length - 1] & mask ) == 0){
-
-                System.out.println(" Go left -> " + mask );
-
-                tmp = tmp.getLeftChild();
-
-            }
-
-            mask >>= 1 ;
-
-            if(tmp.isLeaf()) {
-                decoded.append(tmp.getCharacter());
-                tmp = root;
-            }
-
-        }
 
 
-        return decoded.toString();
+        // return all characters as a string
+        return decodedCharacters.toString();
     }
 
 }
