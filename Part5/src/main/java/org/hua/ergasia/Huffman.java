@@ -98,4 +98,37 @@ public class Huffman {
 
     }
 
+    public String decode (byte[] encoded, Node root){
+        StringBuffer decoded = new StringBuffer();
+        Node tmp = root;
+
+        for(int i = 0; i < encoded.length ; i++)
+        {
+            for(int j = 0; j < 8; j++) {
+
+                if( (encoded[i] & 1 << (7 - j)) == RIGHT) {
+                    tmp = tmp.getRightChild();
+
+                    if(tmp.isLeaf()) {
+                        decoded.append(tmp.getCharacter());
+                        tmp = root;
+                    }
+
+                } else {
+                    tmp = tmp.getLeftChild();
+
+                    if(tmp.isLeaf()) {
+                        decoded.append(tmp.getCharacter());
+                        tmp = root;
+                    }
+                }
+
+            }
+
+        }
+
+
+        return decoded.toString();
+    }
+
 }
