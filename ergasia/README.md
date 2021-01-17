@@ -1,11 +1,11 @@
 
 # Huffman 
 
-Το πρόγραμμα Encode υπολογίζει έναν πίνακα συχνοτήτων για τα γράμματα με ASCII από 0 
-έως και 127, παράγει ένα δέντρο Huffman (tree.dat) και κωδικοποιεί το κάθε γράμμα. Τέλος 
-διαβάζει ένα αρχείο που να περιέχει ASCII χαρακτήρες και αντικαταστεί έναν έναν τον κάθε 
-χαρακτήρα με την κωδικοποιημένη μορφή του. Το πρόγραμμα Decode διαβάζει το αρχείο 
-tree.dat, ένα κωδικοποιημένο αρχείο και το αποκωδικοποιεί στε μορφή ASCII.
+Το πρόγραμμα Encode υπολογίζει έναν πίνακα συχνοτήτων για τα γράμματα με ASCII από 0 έως και 127,
+παράγει ένα δέντρο Huffman (tree.dat) και κωδικοποιεί το κάθε γράμμα. Τέλος διαβάζει ένα αρχείο 
+που να περιέχει ASCII χαρακτήρες και αντικαταστεί κάθε χαρακτήρα με την κωδικοποιημένη μορφή του.
+Το πρόγραμμα Decode διαβάζει το αρχείο tree.dat, ένα κωδικοποιημένο αρχείο και το αποκωδικοποιεί
+στε μορφή ASCII.
 
 
 # Authors
@@ -34,8 +34,10 @@ Run main using
 
 ```
 java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.Encode "input filename" "output filename"
+```
 Προσοχή: Πρέπει το αρχείο input_filename να υπάρχει και να περιέχει χαρακτήρες ASCII.
 
-java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.Decode "input filename" "output filename"
-Προσοχή: Πρέπει το αρχείο input_filename να υπάρχει και να περιέχει το κωδικοποιημένο κείμενο Huffman.
 ```
+java -cp target/ergasia-1.0-SNAPSHOT.jar org.hua.ergasia.Decode "input filename" "output filename"
+```
+Προσοχή: Πρέπει το αρχείο input_filename να υπάρχει και να περιέχει το κωδικοποιημένο κείμενο Huffman.
