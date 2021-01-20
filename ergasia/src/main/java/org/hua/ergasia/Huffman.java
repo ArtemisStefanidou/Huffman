@@ -100,7 +100,10 @@ public class Huffman {
 
 
     /**
-     * // Δεν ξέρω τι να γράψωωωω!!!!!!!!!!!!!!!!!!!!!!!!!!Βοήθεια!!!!!!!!!!!!#@#$@#$%^&*())(*#$%^&*!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * Get the root of Huffman tree and the encoded text as an array of bytes.
+     * Read every bit in byte array and follow the path in Huffman tree (zero
+     * go left ace go right) until find a leaf then save the character. When
+     * have read all byte array return saved characters as a string
      *
      * @param byteArray the array of encoded bytes
      * @param root the root of the Huffman tree

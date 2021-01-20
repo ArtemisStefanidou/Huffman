@@ -131,15 +131,14 @@ public class Encode {
             //Find the useful bits of the last byte
 
 
-            byte tmp = (byte) (encode.length() % 8);   // Εδώ έχουμε την πρώτη αλλαγή !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+            byte tmp = (byte) (encode.length() % 8);
 
             //Create and output the new bytes in the file
             String newLine=System.getProperty("line.separator");
             try (DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(args[1]))) {
 
                 //Print the useful bits
-                dataOut.writeByte(tmp);   // και εδώ η δεύτερη !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                dataOut.writeByte(tmp);
 
                 byte currentByte = 0;
                 int i = 0, j = 0;
